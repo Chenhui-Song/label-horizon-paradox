@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Data (not redistributed; user-supplied) — ignore all files, keep .gitkeep skeletons
+data/**
+!data/**/
+!data/**/.gitkeep
+
+# Results — ignore all outputs, keep .gitkeep skeletons
+results/**
+!results/**/
+!results/**/.gitkeep
+
+# Data-fetch cache
+data_fetch/cache/
+
+# Environment / OS / editor
+.env
+.DS_Store
+.idea/
+.vscode/

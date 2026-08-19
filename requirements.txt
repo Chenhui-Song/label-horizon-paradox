@@ -1,0 +1,10 @@
+# Python >= 3.10 (developed on 3.11)
+
+# Core
+torch>=2.0
+pandas>=2.0
+numpy>=1.24
+pyarrow>=14.0
+
+# DolphinDB (market data download; not needed if you supply parquet files directly)
+dolphindb>=3.0
