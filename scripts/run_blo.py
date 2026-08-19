@@ -90,6 +90,15 @@ ENTROPY_WEIGHT = 1e-4
 # h5=0.0852, h6=0.0853, h7=0.0846, h8=0.0840, h9=0.0822, h10=0.0825.
 R_AGG = np.array([1, 2, 10, 9, 7, 8, 6, 5, 3, 4], dtype=float)
 
+# Robustness to label trimming: the IC above is evaluated on a quantile-trimmed
+# label (returns outside the train-set [q0.5, q99.5] set to NaN). Trimming
+# affects the absolute IC a lot (untrimmed IC is ~55% lower, 0.054 vs 0.083
+# averaged over h, because extreme returns distort the Pearson correlation)
+# but barely moves RankIC (0.110 vs 0.114). Since rc is a rank correlation, it
+# is insensitive to trimming: re-evaluating the same learned λ against an
+# untrimmed IC ranking gives grand rc=0.915 (vs 0.939 trimmed), still all 10
+# warmup seeds lock onto h3. Trimming does not affect BLO's conclusion.
+
 BLO_DIR = RESULTS_DIR / "blo"
 BLO_DIR.mkdir(parents=True, exist_ok=True)
 RESULTS_CSV = BLO_DIR / "blo_results.csv"

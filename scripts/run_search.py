@@ -113,6 +113,15 @@ def main():
     vadj_tr = vwap_adj.loc[tr_s:tr_e]
     lo10, hi10 = compute_label_quantile(vadj_tr, TARGET_H)
     ret_eval = make_label(vwap_adj, TARGET_H, lo10, hi10)
+    # The test label is quantile-trimmed (returns outside the train-set [q0.5,
+    # q99.5] set to NaN). Trimming matters for the absolute IC: without it,
+    # extreme returns (limit-up/down, resumption gaps) distort the Pearson
+    # correlation and IC drops ~55% (0.054 vs 0.083 averaged over h), while
+    # RankIC barely moves (0.110 vs 0.114). The IC-vs-RankIC gap shrinks from
+    # 0.056 to 0.030. The IC *ranking* across horizons is nearly identical
+    # trimmed vs untrimmed (only an adjacent h9/h10 swap at the low-IC tail),
+    # so trimming does not affect the paradox — h=3 remains the single best
+    # and h=10 the worst on IC either way.
     train_mask = get_train_union_tradable(TRAIN_START, TEST_END, TRAIN_START, TRAIN_END)
     pit_mask = get_tradable(TRAIN_START, TEST_END)
 
