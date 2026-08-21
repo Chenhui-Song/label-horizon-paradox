@@ -238,15 +238,22 @@ def predict_alpha_pit(model, factor_long, factor_cols, test_dates, member_mask):
     """
     alpha_preds = {}
     model.eval()
+    # Pre-slice factor_long by day and member_mask by day, so the per-day loop
+    # is O(1) lookup instead of a full-table xs/get_level_values scan.
+    fac_by_day = {t: g[factor_cols].droplevel("date")
+                  for t, g in factor_long.groupby(level="date", sort=True)}
+    mm_by_day = {}
+    if member_mask is not None:
+        for t in member_mask.index:
+            in_idx = member_mask.loc[t]
+            mm_by_day[t] = in_idx[in_idx].index
     with torch.no_grad():
         for t in sorted(test_dates):
-            if t not in factor_long.index.get_level_values("date"):
+            X_t = fac_by_day.get(t)
+            if X_t is None:
                 continue
-            X_t = factor_long.xs(t, level="date")[factor_cols]
-            if t in member_mask.index:
-                in_idx = member_mask.loc[t]
-                in_idx = in_idx[in_idx].index
-                X_t = X_t.loc[X_t.index.intersection(in_idx)]
+            if t in mm_by_day:
+                X_t = X_t.loc[X_t.index.intersection(mm_by_day[t])]
             if len(X_t) < 20:
                 continue
             # Drop stocks with any NaN/inf factor (aligned with build_xy_clip).
