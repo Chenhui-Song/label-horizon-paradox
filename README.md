@@ -200,37 +200,43 @@ full list of simplifications.
 
 **CSI1800 top-100** (`--pool topn --topn 100 --universe csi300,csi500,csi1000`, 100 stocks from the CSI300+CSI500+CSI1000 union):
 
-| h | Sharpe | Ann | MDD |
-|---|---|---|---|
-| 1 | 1.533 | 26.18% | 10.44% |
-| 2 | 1.516 | 26.14% | 11.30% |
-| **3** | **1.626** | **28.51%** | 12.38% |
-| 4 | 1.516 | 26.14% | 12.73% |
-| 5 | 1.549 | 26.54% | 13.34% |
-| 6 | 1.495 | 25.19% | 13.88% |
-| 7 | 1.541 | 25.66% | 13.69% |
-| 8 | 1.560 | 25.99% | 14.03% |
-| 9 | 1.548 | 25.72% | 13.13% |
-| 10 | 1.555 | 25.80% | 13.29% |
+| h | Sharpe | Ann | MDD | Calmar |
+|---|---|---|---|---|
+| 1 | 1.690 | 30.48% | 11.30% | 2.70 |
+| 2 | 1.696 | 30.79% | 10.82% | 2.85 |
+| 3 | **1.811** | **33.45%** | 11.65% | **2.87** |
+| 4 | 1.739 | 31.56% | 12.16% | 2.60 |
+| 5 | 1.755 | 31.42% | 12.60% | 2.49 |
+| 6 | 1.749 | 30.53% | 13.49% | 2.26 |
+| 7 | 1.762 | 30.37% | 13.36% | 2.27 |
+| 8 | 1.811 | 31.20% | 13.69% | 2.28 |
+| 9 | 1.712 | 29.41% | 13.12% | 2.24 |
+| 10 | 1.700 | 29.19% | 13.31% | 2.19 |
+
+> Sharpe h3/h8 tied (1.811); Ann, Calmar peak at h3. (Calmar = Ann/MDD.)
 
 **Three-index 20:30:50** (CSI300/500/1000 top 20/30/50, 100 stocks):
 
-| h | Sharpe | Ann | MDD |
-|---|---|---|---|
-| 1 | 1.700 | 30.42% | 11.24% |
-| 2 | 1.700 | 30.65% | 10.71% |
-| **3** | **1.852** | **34.00%** | 10.96% |
-| 4 | 1.774 | 31.95% | 11.65% |
-| 5 | 1.773 | 31.54% | 11.95% |
-| 6 | 1.754 | 30.60% | 12.99% |
-| 7 | 1.762 | 30.31% | 12.96% |
-| 8 | 1.812 | 31.17% | 13.15% |
-| 9 | 1.666 | 28.68% | 12.99% |
-| 10 | 1.690 | 29.14% | 12.82% |
+| h | Sharpe | Ann | MDD | Calmar |
+|---|---|---|---|---|
+| 1 | 1.700 | 30.42% | 11.24% | 2.71 |
+| 2 | 1.700 | 30.65% | 10.71% | 2.86 |
+| **3** | **1.852** | **34.00%** | 10.96% | **3.10** |
+| 4 | 1.774 | 31.95% | 11.65% | 2.74 |
+| 5 | 1.773 | 31.54% | 11.95% | 2.64 |
+| 6 | 1.754 | 30.60% | 12.99% | 2.36 |
+| 7 | 1.762 | 30.31% | 12.96% | 2.34 |
+| 8 | 1.812 | 31.17% | 13.15% | 2.37 |
+| 9 | 1.666 | 28.68% | 12.99% | 2.21 |
+| 10 | 1.690 | 29.14% | 12.82% | 2.27 |
 
-Across the two pools and the IC/Sharpe/return metrics, **h=3 is broadly the
-best overall**, though the peak is not unanimous on every single metric — the
-Label Horizon Paradox carries through from IC to backtest.
+> All return/risk metrics (Sharpe, Ann, Calmar, Ret/TO) peak at h=3 — a clean
+> match to the IC peak (h=3, 0.0860).
+
+Across the two pools and the IC/Sharpe/Ann/Calmar/Ret-TO metrics, **h=3 is
+broadly the best overall** — the only tie is Sharpe in the CSI1800 top-100 pool
+(h3 = h8 = 1.811), but h=3 wins on Ann, Calmar, and Ret/TO there too. The Label
+Horizon Paradox carries through from IC to backtest.
 
 ---
 

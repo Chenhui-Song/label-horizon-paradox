@@ -208,33 +208,41 @@ close price; trades execute at next-day VWAP. A-share costs: stamp duty 0.05%
 
 ### CSI1800 top-100 (`--pool topn --topn 100 --universe csi300,csi500,csi1000`, 100 stocks from the CSI300+CSI500+CSI1000 union)
 
-| h | Sharpe | Ann | MDD | Turnover |
-|---|---|---|---|---|
-| 1 | 1.533 | 26.18% | 10.44% | 16.19% |
-| 2 | 1.516 | 26.14% | 11.30% | 15.85% |
-| **3** | **1.626** | **28.51%** | 12.38% | 15.84% |
-| 4 | 1.516 | 26.14% | 12.73% | 15.47% |
-| 5 | 1.549 | 26.54% | 13.34% | 15.65% |
-| 6 | 1.495 | 25.19% | 13.88% | 15.57% |
-| 7 | 1.541 | 25.66% | 13.69% | 15.49% |
-| 8 | 1.560 | 25.99% | 14.03% | 15.53% |
-| 9 | 1.548 | 25.72% | 13.13% | 15.50% |
-| 10 | 1.555 | 25.80% | 13.29% | 15.41% |
+| h | Sharpe | Ann | Vol | MDD | Calmar | Turnover | Ret/TO |
+|---|---|---|---|---|---|---|---|
+| 1 | 1.690 | 30.48% | 18.03% | 11.30% | 2.70 | 17.19% | 1.77 |
+| 2 | 1.696 | 30.79% | 18.16% | 10.82% | 2.85 | 16.91% | 1.82 |
+| 3 | **1.811** | **33.45%** | 18.47% | 11.65% | **2.87** | 16.93% | **1.98** |
+| 4 | 1.739 | 31.56% | 18.15% | 12.16% | 2.60 | 16.65% | 1.90 |
+| 5 | 1.755 | 31.42% | 17.90% | 12.60% | 2.49 | 16.75% | 1.88 |
+| 6 | 1.749 | 30.53% | 17.46% | 13.49% | 2.26 | 16.73% | 1.83 |
+| 7 | 1.762 | 30.37% | 17.23% | 13.36% | 2.27 | 16.61% | 1.83 |
+| 8 | **1.811** | 31.20% | 17.22% | 13.69% | 2.28 | 16.66% | 1.87 |
+| 9 | 1.712 | 29.41% | 17.17% | 13.12% | 2.24 | 16.61% | 1.77 |
+| 10 | 1.700 | 29.19% | 17.17% | 13.31% | 2.19 | 16.55% | 1.76 |
+
+> Vol = annualized volatility (Ann/Sharpe, rf=0); Calmar = Ann/MDD; Ret/TO = Ann/Turnover
+> (return per unit turnover). Sharpe h3/h8 are tied (1.811 vs 1.811); Ann, Calmar,
+> and Ret/TO all peak at h3, matching the IC peak.
 
 ### Three-index 20:30:50 (`--pool 3index --n-config 20:30:50`, 100 stocks)
 
-| h | Sharpe | Ann | MDD | Turnover |
-|---|---|---|---|---|
-| 1 | 1.700 | 30.42% | 11.24% | 17.21% |
-| 2 | 1.700 | 30.65% | 10.71% | 16.95% |
-| **3** | **1.852** | **34.00%** | 10.96% | 16.93% |
-| 4 | 1.774 | 31.95% | 11.65% | 16.67% |
-| 5 | 1.773 | 31.54% | 11.95% | 16.74% |
-| 6 | 1.754 | 30.60% | 12.99% | 16.70% |
-| 7 | 1.762 | 30.31% | 12.96% | 16.59% |
-| 8 | 1.812 | 31.17% | 13.15% | 16.66% |
-| 9 | 1.666 | 28.68% | 12.99% | 16.60% |
-| 10 | 1.690 | 29.14% | 12.82% | 16.55% |
+| h | Sharpe | Ann | Vol | MDD | Calmar | Turnover | Ret/TO |
+|---|---|---|---|---|---|---|---|
+| 1 | 1.700 | 30.42% | 17.90% | 11.24% | 2.71 | 17.21% | 1.77 |
+| 2 | 1.700 | 30.65% | 18.03% | 10.71% | 2.86 | 16.95% | 1.81 |
+| **3** | **1.852** | **34.00%** | 18.35% | 10.96% | **3.10** | 16.93% | **2.01** |
+| 4 | 1.774 | 31.95% | 18.01% | 11.65% | 2.74 | 16.67% | 1.92 |
+| 5 | 1.773 | 31.54% | 17.79% | 11.95% | 2.64 | 16.74% | 1.88 |
+| 6 | 1.754 | 30.60% | 17.45% | 12.99% | 2.36 | 16.70% | 1.83 |
+| 7 | 1.762 | 30.31% | 17.21% | 12.96% | 2.34 | 16.59% | 1.83 |
+| 8 | 1.812 | 31.17% | 17.20% | 13.15% | 2.37 | 16.66% | 1.87 |
+| 9 | 1.666 | 28.68% | 17.22% | 12.99% | 2.21 | 16.60% | 1.73 |
+| 10 | 1.690 | 29.14% | 17.24% | 12.82% | 2.27 | 16.55% | 1.76 |
+
+> All four return/risk metrics (Sharpe, Ann, Calmar, Ret/TO) peak at h=3,
+> matching the IC peak — the Label Horizon Paradox carries through cleanly to
+> the 3-index backtest.
 
 ### Index benchmarks (test period, buy-and-hold)
 
@@ -249,15 +257,19 @@ close price; trades execute at next-day VWAP. A-share costs: stamp duty 0.05%
 - **Both alpha configs beat CSI300 and CSI1000** across all horizons on Sharpe,
   while keeping drawdowns lower; 3-index top h=3 (Sharpe 1.852) matches CSI500,
   which had an exceptionally strong test period.
-- **IC peak at h=3 carries through to backtest**: both pools have their Sharpe
-  peak at h=3 (CSI1800 top-100: 1.626; 3-index: 1.852), matching the brute-force
-  search IC peak. This confirms the Label Horizon Paradox — the h=3 supervision
-  signal beats the h=10 inference target in out-of-sample backtest.
+- **IC peak at h=3 carries through to backtest**: in the 3-index pool, Sharpe,
+  Ann, Calmar, and Ret/TO all peak at h=3 (1.852 / 34.00% / 3.10 / 2.01) — a clean
+  match to the brute-force IC peak (h=3, 0.0860). In the CSI1800 top-100 pool,
+  Sharpe is tied between h=3 and h=8 (1.811 vs 1.811, a flat plateau), but Ann
+  (33.45%), Calmar (2.87), and Ret/TO (1.98) still peak at h=3. This confirms
+  the Label Horizon Paradox — the h=3 supervision signal beats the h=10
+  inference target in out-of-sample backtest across all return/risk metrics.
 - **3-index has a sharper h=3 peak** (Sharpe 1.67–1.85, h=3 clearly highest)
-  than CSI1800 top-100 (1.50–1.63, a flatter profile where h=3 is the peak but
-  h8/h10 stay competitive). Both modes select from the CSI1800 universe; the
-  3-index mode splits selection across CSI300/500/1000, giving a sharper
-  large/mid-cap tilt, while top-100 draws from the union and is flatter.
+  than CSI1800 top-100 (1.69–1.81, a flatter profile where h=3 and h=8 are tied
+  on Sharpe but h=3 wins on Ann/Calmar/Ret-TO). Both modes select from the
+  CSI1800 universe; the 3-index mode splits selection across CSI300/500/1000,
+  giving a sharper large/mid-cap tilt, while top-100 draws from the union and
+  is flatter.
 - BLO's learned λ concentrates on h=3..h=6 (see [blo.md](blo.md)), which
   overlaps the backtest peak region — BLO identifies the right horizon without
   the brute-force sweep.

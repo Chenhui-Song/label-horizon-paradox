@@ -101,15 +101,17 @@ class TopNOptimizer:
         w = pd.Series(0.0, index=alpha.index)
         a = alpha.dropna()
         if self.member_masks:
-            # Union of the provided constituent masks on the signal day
+            # Union of the provided constituent masks on the signal day.
+            # Each mask may have different columns; reindex to alpha's index
+            # (fill False) before the union so it covers all members.
             date = alpha.name
-            union = None
+            union = pd.Series(False, index=a.index)
             for mask in self.member_masks:
                 if date not in mask.index:
                     continue
                 m = mask.loc[date]
-                union = m if union is None else (union | m)
-            if union is not None:
+                union = union | m.reindex(union.index, fill_value=False)
+            if union.any():
                 a = a.loc[a.index.intersection(union[union].index)]
         a = a.sort_values(ascending=False)
         if len(a) >= self.n:
