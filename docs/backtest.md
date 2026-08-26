@@ -246,11 +246,11 @@ close price; trades execute at next-day VWAP. A-share costs: stamp duty 0.05%
 
 ### Index benchmarks (test period, buy-and-hold)
 
-| Index | Sharpe | Ann | MDD |
-|---|---|---|---|
-| CSI300 | 1.283 | 20.50% | 10.49% |
-| CSI500 | 1.852 | 40.95% | 14.06% |
-| CSI1000 | 1.477 | 34.26% | 16.87% |
+| Index | Sharpe | Ann | Vol | MDD | Calmar |
+|---|---|---|---|---|---|
+| CSI300 | 1.283 | 20.50% | 15.98% | 10.49% | 1.95 |
+| CSI500 | 1.852 | 40.95% | 22.11% | 14.06% | 2.91 |
+| CSI1000 | 1.477 | 34.26% | 23.20% | 16.87% | 2.03 |
 
 ### Observations
 
